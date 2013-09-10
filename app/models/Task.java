@@ -1,14 +1,17 @@
 package models;
 
 import java.util.*;
+
 import play.modules.mongodb.jackson.MongoDB;
+import net.vz.mongodb.jackson.DBUpdate;
 import net.vz.mongodb.jackson.JacksonDBCollection;
 import net.vz.mongodb.jackson.Id;
 import net.vz.mongodb.jackson.ObjectId;
+
 import org.codehaus.jackson.annotate.JsonProperty;
 
 import javax.persistence.*;
-
+ 
 public class Task{
     
   @Id
@@ -32,5 +35,18 @@ public class Task{
     if (task != null)
         Task.coll.remove(task);
   }
+  
+  
+  public static void update(String id, Task task) {
+	     Task.coll.updateById(id, task);
+	    // Task.coll.updateById(id, DBUpdate.push("label", task.label));
+
+	    
+	  }
+  
+  public static Task show(String id) {
+	     return Task.coll.findOneById(id);
+	    
+	  }
     
 }

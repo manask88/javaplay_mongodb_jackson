@@ -18,13 +18,32 @@ public class Application extends Controller {
   public static Result index() {
 	  return redirect(routes.Application.tasks());
 }
+  
+  
+  public static Result show(String id) {
+	  return ok(	    		
+		      views.html.show.render(Task.show(id), taskForm)
+		     );
+}
+  
+  public static Result update(String id) {
+
+	    Form<Task> filledForm = taskForm.bindFromRequest();
+	      if(filledForm.hasErrors()) {
+	        return badRequest(
+	          views.html.show.render(Task.show(id), filledForm)
+	        );
+	      } else {
+	        Task.update(id,filledForm.get());
+	        return redirect(routes.Application.tasks());  
+	      }
+	  }
+  
   public static Result tasks() {
     return ok(
     		
       views.html.index.render(Task.all(), taskForm)
-    		//"helo"
-     // Task.all(),"ss"	
-    	//	index.render(Task.all(), taskForm)
+  
     );
   }
   

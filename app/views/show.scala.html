@@ -1,0 +1,24 @@
+@(task: Task, taskForm: Form[Task])
+
+@import helper._
+
+@main("Todo list") {
+    
+    
+    <ul>     
+            <li>
+         @form(routes.Application.update(task.id)) {
+        
+        @inputText(taskForm("label"),'_label -> task.label) 
+        
+        <input type="submit" value="Update">
+
+                }</li>
+                
+          
+        
+    </ul>
+    
+    
+    
+}
