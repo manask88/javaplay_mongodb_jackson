@@ -39,7 +39,6 @@ public class Task{
   
   public static void update(String id, Task task) {
 	     Task.coll.updateById(id, task);
-	    // Task.coll.updateById(id, DBUpdate.push("label", task.label));
 
 	    
 	  }
